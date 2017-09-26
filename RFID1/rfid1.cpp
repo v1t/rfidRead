@@ -23,11 +23,25 @@ void RFID1::showCardID(uchar *id)
 {
     int IDlen=4;
     for(int i=0; i<IDlen; i++){
-        Serial.print(0x0F & (id[i]>>4), HEX);
-        Serial.print(0x0F & id[i],HEX);
+        Serial.print(String(0x0F & (id[i]>>4), HEX));
+        Serial.print(String(0x0F & id[i],HEX));
     }
     //Serial.println();
 	//Serial.println();
+}
+
+void RFID1::getCardID(uchar* dest, int destLen, uchar*id)
+{
+    if(destLen < 8){ return;}
+    String temp;
+    int IDlen=4;
+    for(int i=0; i<IDlen; i++){
+        temp = String(0x0F & (id[i]>>4), HEX);
+        dest[i*2] = temp[0];
+        temp =String(0x0F & id[i],HEX);
+        dest[i*2+1] = temp[0];
+    }
+    
 }
 /**********************************************************
  * Function：ShowCardType

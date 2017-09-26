@@ -115,6 +115,8 @@ class RFID1
 	public:
 	  void  begin(uchar csnPin, uchar sckPin, uchar mosiPin, uchar misoPin, uchar chipSelectPin, uchar NRSTPD);
 	  void  showCardID(uchar *id);
+      void getCardID(uchar* dest, int destLen, uchar*id);
+    
 	  void  showCardType(uchar* type);
 	  void  writeTo(uchar addr, uchar val);
 	  uchar readFrom(uchar addr);
